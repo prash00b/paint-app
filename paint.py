@@ -46,10 +46,10 @@ class PaintGUI:
         self.save_btn.grid(row=1,column=3, sticky = W+E)
 
         self.save_btn=Button(self.btn_frame,text="Save circle",command=self.save_circle)
-        self.save_btn.grid(row=1,column=4, sticky = W+E)
+        self.save_btn.grid(row=0,column=3, sticky = W+E)
 
-
-
+        self.save_btn=Button(self.btn_frame,text="Save rectangle",command=self.save_rectangle)
+        self.save_btn.grid(row=0,column=4, sticky = W+E)
         
         self.bplus_btn=Button(self.btn_frame,text="B+",command=self.brush_plus) #increase brush size
         self.bplus_btn.grid(row=0,column=1, sticky = W+E)
@@ -103,6 +103,18 @@ class PaintGUI:
         now = datetime.datetime.now()
         filename="image_{:%Y-%m-%d_%H-%M-%S}.png".format(now)
         default_dir = os.path.expanduser('circle')
+        # filename = filedialog.asksaveasfilename(
+        #                                         initialdir=default_dir,
+        #                                         initialfile=filename,
+        #                                         defaultextension="png",
+        #                                         filetypes=[("PNG","JPG"),(".png",".jpg")])
+        filename = os.path.join(default_dir, filename)
+        self.image.save(filename)
+    
+    def save_rectangle(self):
+        now = datetime.datetime.now()
+        filename="image_{:%Y-%m-%d_%H-%M-%S}.png".format(now)
+        default_dir = os.path.expanduser('rectangle')
         # filename = filedialog.asksaveasfilename(
         #                                         initialdir=default_dir,
         #                                         initialfile=filename,
